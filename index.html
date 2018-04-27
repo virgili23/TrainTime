@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Train Time!</title>
+    <meta charset="utf-8">
+    <link rel="icon" 
+            type="image/png" 
+            href="assets/images/icon.png"> 
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+
+     <!-- Link to Moment.js should go here -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+        
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="container jumbotron" id="header">
+        <h1>Any time is Train TIME!</h1>
+    </div> <!-- end of header -->
+
+<div class="panel panel-primary"> <!-- current train time -->
+        <div class="panel-heading">
+            <h3 class="panel-title">Current Train Schedule</h3>
+        </div>
+        <div class="panel-body">
+
+
+ <!-- //////////////////////////// Table starts here //////////////////////////////////-->
+ <!-- //////////////////////////// Table starts here //////////////////////////////////-->
+ <!-- //////////////////////////// Table starts here //////////////////////////////////-->
+    <table class="table">
+        <!-- Table Heads -->
+        <thead>
+            <tr>
+            <th scope="col">Train Name</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Frequency (min)</th>
+            <th scope="col">Next Arrival</th>
+            <th scope="col">Minutes Away</th>
+            </tr>
+        </thead>
+
+        <!-- ////////////////////////// Table Contents ////////////////////////////-->
+        <!-- ////////////////////////// Table Contents ////////////////////////////-->
+        <!-- ////////////////////////// Table Contents ////////////////////////////-->
+        <!-- ////////////////////////// Table Contents ////////////////////////////-->
+        <tbody id="input">
+            <tr>
+                <td>Virgil Express</td>
+                <td>VirgilLand</td>
+                <td>25</td>
+                <td>05:35 PM</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                    <td>The Velociraptor</td>
+                    <td>Paleo</td>
+                    <td>30</td>
+                    <td>6:30 pm</td>
+                    <td>30</td>
+                </tr>
+        </tbody>
+    </table>
+
+
+        </div>
+        </div> <!-- end of current train time section -->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div class="panel panel-primary"> <!-- add train -->
+    <div class="panel-heading">
+        <h3 class="panel-title">Add Train</h3>
+    </div>
+    <div class="panel-body">
+            <form id="input-form">
+                <!-- Train Name -->
+                <div class="form-group">
+                    <label for="name-input">Train Name</label>
+                    <input type="text" class="form-control" id="name-input" placeholder="Name of the train">
+                </div>
+                <!-- Destination -->
+                <div class="form-group">
+                    <label for="dest-input">Destination</label>
+                    <input type="text" class="form-control" id="dest-input" placeholder="Destination">
+                </div>
+                <!-- First Train Time -->
+                <div class="form-group">
+                    <label for="first-input">First Train Time (HH:mm - Military Time)</label>
+                    <input type="text" class="form-control" id="first-input" placeholder="Enter in (HH:MM) format">
+                </div>
+                <!-- Frequency (min) -->
+                <div class="form-group">
+                    <label for="freq-input">Frequency (Min)</label>
+                    <input type="number" class="form-control" id="freq-input" placeholder="Frequency in minutes">
+                </div>
+                <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+                </form>
+    </div>
+    </div> <!-- end of add train section -->
+
+
+    <!--//////////////////This Button is just to test out firebase -->
+    <button id="click-button">Click Me!!!!</button>
+
+
+</div> <!-- end of container -->
+</body>
+<script type="text/javascript" src="assets/javascript/app.js"></script>      
+</html>
