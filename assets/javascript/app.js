@@ -18,7 +18,7 @@ var database = firebase.database();
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
-//                    Real Code                 ///
+///                   Real Code                 ///
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
@@ -33,6 +33,13 @@ var away = 0; // Minutes away
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
 
+// displays current time
+function displayCurrentTime() {
+    setInterval (function () {
+        $('#current-time').html(moment().format('HH:mm:ss A'))
+    }, 1000)
+}
+displayCurrentTime();
 
 /////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
@@ -45,20 +52,17 @@ $("#submit").on("click", function(event) {
     //////////////////////////////////////////////
     /////////////////////////////////////////////
 
-// Grabs value from these fields, will do firstTime separate as we have to calculate first
+// Grabs value from these fields
     nameInput = $("#name-input").val().trim();
     destInput = $("#dest-input").val().trim();
     freqInput = $("#freq-input").val().trim();
 
 
-    // capture the first train time input in moment.js
- //////////////////////////////////////////////////////
-
-var randomTime = $("#first-input").val().trim();
-var randomFormat = "HH:mm";
-var convertedDate = moment(randomTime, randomFormat); 
-
-
+// capture the first train time input in moment.js
+var timeInput = $("#first-input").val().trim();
+//////////////////////////////////////////////////////
+var militaryFormat = "HH:mm";
+var convertedDate = moment(timeInput, militaryFormat); 
 // Converts military time that user inputs, into civilian time
 // We put that calculated time into a variable called "firstTime"
 var firstTime = moment(convertedDate).format('hh:mm');
@@ -66,8 +70,35 @@ var firstTime = moment(convertedDate).format('hh:mm');
 console.log(firstTime);
 console.log("..................................................");
 
-// Variable that will calculate the next train arrival will be here !!!
-var nextArrival = 
+// var first time is the military time converted into civilian time
+
+
+
+//first train time
+var firstTimeConverted = moment(timeInput, "hh:mm").subtract(1, "years");
+console.log("Test Code: " + firstTimeConverted);
+
+// current time
+var currentTime = moment();
+console.log("current time:" + moment(currentTime).format("hh:mm"));
+
+// time diff
+var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+console.log("Difference in time: " + diffTime);
+
+//time apart
+var tRemainder = diffTime % freqInput;
+console.log("time apart: " + tRemainder);
+
+// Minute until train
+var tMinutesUntilTrain = freqInput - tRemainder;
+console.log("Minutes Until Train: " + tMinutesUntilTrain);
+
+// Next Train
+var nextTrain = moment().add(tMinutesUntilTrain, "minutes").format("hh:mm A");
+console.log("Arrival Time: " + moment(nextTrain).format("hh:mm"));
+
+
     
     
 
@@ -76,6 +107,7 @@ var nextArrival =
       name: nameInput,
       dest: destInput,
       firstTime: firstTime,
+      timeInput: timeInput,
       freq: freqInput
     });
 
@@ -89,7 +121,9 @@ var nextArrival =
         '</td><td>'
         +freqInput+
         '</td><td>'
-        +nextArrival+
+        +nextTrain+
+        '</td><td>'
+        +tMinutesUntilTrain+
         '</td>'
     );
 
@@ -144,6 +178,13 @@ database.ref().on("value", function(snapshot) {
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
+
+
+
+
+
+
+
 
  // Initializing our click count at 0
  var clickCounter = 0;
